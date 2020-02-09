@@ -10,9 +10,9 @@ public class Leetcode39 {
 		int target = 10;
 		List<List<Integer>> res = new ArrayList<>();
 		Arrays.sort(nums);
-		
+
 		combinationSum(nums, target, res, new ArrayList<Integer>(), 0);
-		
+
 		for (List<Integer> list : res) {
 			for (Integer i : list) {
 				System.out.print(i + " ");
@@ -21,19 +21,20 @@ public class Leetcode39 {
 		}
 	}
 
+	/*
 	private static int combinationSum(int[] nums, int target, List<List<Integer>> res, 
 										ArrayList<Integer> list, int start) {
 		// TODO Auto-generated method stub
-		
+
 		if (target < 0) {
 			return 1;
 		}
-		
+
 		if (target == 0) {
 			res.add(new ArrayList<Integer>(list));
 			return 0;
 		}
-		
+
 		for (int i = start; i < nums.length; i++) {
 			list.add(nums[i]);
 			int ret = combinationSum(nums, target-nums[i], res, list, i);
@@ -42,8 +43,30 @@ public class Leetcode39 {
 				return 0;
 			}
 		}
-		
+
 		return 0;
+	}*/
+
+	private static void combinationSum(int[] nums, int target, List<List<Integer>> res, 
+										ArrayList<Integer> list, int start) {
+		// TODO Auto-generated method stub
+
+		if (target < 0) {
+			return;
+		}
+
+		if (target == 0) {
+			res.add(new ArrayList<Integer>(list));
+			return;
+		}
+
+		for (int i = start; i < nums.length; i++) {
+			list.add(nums[i]);
+			combinationSum(nums, target-nums[i], res, list, i);
+			list.remove(list.size()-1);
+		}
+
+		return;
 	}
 
 }
